@@ -1,0 +1,23 @@
+<h3>POST 一覧</h3>
+
+<% @posts.each do |post| %>
+  <div>
+    
+
+    <!--商品画像-->
+    <%= link_to post_path(post.id) do %>
+      <%= image_tag post.get_image(300,300) %>
+    <% end %>
+
+    <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
+    <p>商品名:<%= post.name %></p>
+    <p><%= post.introduction %></p>
+    <p>場所:<%= post.prefecture %></p>
+    <p>「<%= post.recommend %>」オススメ</P>
+
+    <!--ユーザー情報-->
+    <p><%= image_tag post.user.get_profile_image(80,80) %></p>
+    <p>User_name：<%= post.user.name %></p>
+
+  </div>
+<% end %>

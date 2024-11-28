@@ -1,0 +1,44 @@
+<h3>POST</h3>
+<%= form_with model: @post do |f| %>
+
+  <h4>画像</h4>
+  <%= f.file_field :image, accept: "image/*" %>
+
+  <h4>商品名</h4>
+  <%= f.text_field :name %>
+
+  <h4>商品説明</h4>
+  <%= f.text_area :introduction %>
+
+  <h4>個数</h4>
+  <%= f.number_field :amount %>個
+
+  <!--包装 有無-->
+  <p>※個包装
+    <%= f.radio_button :package, :yes %>
+    <%= f.label :package_yes, "有り" %>
+    <%= f.radio_button :package, :no %>
+    <%= f.label :package_no, "無し" %>
+  </p>
+
+  <h4>価格</h4>
+  <%= f.number_field :price %>円
+
+  <h4>都道府県</h4>
+  <%= f.select :prefecture, Post.prefectures.keys.map %>
+
+  <h4>場所（詳細）</h4>
+  <%= f.text_field :location %>
+
+  <h4>贈る相手・オススメ</h4>
+  <%= f.select :recommend, Post.recommends.keys.map %>
+
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+
+  <h4>Review</h4>
+  <%= f.text_area :review %>
+  
+  <br>
+  <%= f.submit '投稿' %>
+<% end %>

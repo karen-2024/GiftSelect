@@ -1,0 +1,32 @@
+<h3>POST詳細</h3>
+
+<div>
+  <%= image_tag @post.get_image(300,300) %>
+
+  <p>商品名:<%= @post.name %></p>
+  <p>説明:<%= @post.introduction %></p>
+  <p>数量:<%= @post.amount %></p>
+  <p>個包装:<%= @post.package %></p>
+  <p>価格:<%= @post.price %>円</p>
+  <p>場所:<%= @post.prefecture %></p>
+  <p>詳細:<%= @post.location %></p>
+  <p>「<%= @post.recommend %>」オススメ</P>
+
+  <p>Title：<%= @post.title %></p>
+  <p>Review：<%= @post.review %></p>
+
+  <p><%= image_tag @post.user.get_profile_image(80,80) %></p>
+  <p>User_name：<%= @post.user.name %></p>
+  <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+
+  <!--編集ボタン-->
+  <% if @post.user == current_user %>
+    <%= link_to "Edit",edit_post_path(@post) %>
+  <% end %>
+
+  <!--削除ボタン-->
+  <% if @post.user == current_user %>
+    <%= link_to "Delete", post_path(@post), method: :delete %>
+  <% end %>
+  
+</div>
