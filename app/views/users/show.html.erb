@@ -21,14 +21,19 @@
       <%= image_tag post.get_image(300,300) %>
     <% end %>
 
-    <p><%= post.name %></p>
+    <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
+    <p>商品名:<%= post.name %></p>
     <p><%= post.introduction %></p>
-    <p><%= post.prefecture %></p>
-    <p><%= post.recommend %></P>
+    <p>場所:<%= post.prefecture %></p>
+    <p>「<%= post.recommend %>」オススメ</P>
 
     <!--ユーザー情報-->
     <p><%= image_tag post.user.get_profile_image(100,100) %></p>
     <p>User_name：<%= post.user.name %></p>
+
+    <!--いいね・コメント-->
+    <p><%= link_to "★いいね: #{post.favorites.count}", post_path(post.id) %></p>
+    <p><%= link_to "コメント: #{post.post_comments.count}", post_path(post.id) %></p>
 
   </div>
 <% end %>

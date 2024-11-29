@@ -19,5 +19,8 @@
     <p><%= image_tag post.user.get_profile_image(80,80) %></p>
     <p>User_name：<%= post.user.name %></p>
 
+    <!--いいね・コメント-->
+    <p><%= link_to "★いいね: #{post.favorites.count}", post_path(post.id) %></p>
+    <p><%= link_to "コメント: #{post.post_comments.count}", post_path(post.id) %></p>
   </div>
 <% end %>

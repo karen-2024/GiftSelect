@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
   has_one_attached :image
+  has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   belongs_to :user
 
   with_options presence: true do
@@ -36,4 +38,9 @@ class Post < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
+
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
+  
 end
