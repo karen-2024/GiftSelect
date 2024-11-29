@@ -1,24 +1,34 @@
-# README
+# GiftSelect
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
 
-Things you may want to cover:
+### サイトテーマ
+もらったお土産/贈り物について感想を投稿したり、選ぶのに悩んだ際に他の人の投稿を参考にできるレビューサイト
+​
+### テーマを選んだ理由
+旅行に行った際のお土産やお世話になった人へ贈り物をしたい時に、いつも「オススメ」などで探して、結局定番の似たようなものしか思いつかず悩んでいました。
+送りたい人数分の数量や種類を指定して検索できたり、もらった側の感想が知れるサービスがあれば、選ぶ際の参考になり頭を悩ませる時間が減るのではないかと考えました。
+またもらった側の感想を知れるので、「多人数向けじゃない」といった注意点や、あまり知られていない珍しいモノに出会えるチャンスもあると考え、このテーマにしました。
+​
+### ターゲットユーザ
+* いつも１パターンなお土産/贈り物になり、悩んでいる人
+* 選んだお土産/贈り物の評価が知りたいと思っている人
+​
+### 主な利用シーン
+* お土産/贈り物選びに悩んだ時
+* 多人数へ渡す予定で、数量を指定したい時
+* もらったお土産/贈り物の感想（詳細）が知りたい時
 
-* Ruby version
+## 設計書
+後ほど作成予定
+​
+## 仕様素材
+* フリー素材として以下を使用
+- Pixels（https://www.pexels.com/ja-jp/）
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
