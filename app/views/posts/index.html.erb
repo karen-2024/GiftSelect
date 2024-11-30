@@ -1,26 +1,51 @@
-<h3>POST 一覧</h3>
 
-<% @posts.each do |post| %>
-  <div>
-    
+<h2>POST 一覧</h2>
 
-    <!--商品画像-->
-    <%= link_to post_path(post.id) do %>
-      <%= image_tag post.get_image(300,300) %>
+<!--エラーメッセージ-->
+<% if @post.errors.any? %>
+  <h3><%= @post.errors.count %>error prohibited this obj from being saved:</h3>
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
     <% end %>
-
-    <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
-    <p>商品名：<%= post.name %></p>
-    <p><%= post.introduction %></p>
-    <p>場所：<%= post.prefecture %></p>
-    <p>「<%= post.recommend %>」オススメ</P>
-
-    <!--ユーザー情報-->
-    <p><%= image_tag post.user.get_profile_image(80,80) %></p>
-    <p>User_name：<%= post.user.name %></p>
-
-    <!--いいね・コメント-->
-    <p><%= link_to "★いいね： #{post.favorites.count}", post_path(post.id) %></p>
-    <p><%= link_to "コメント： #{post.post_comments.count}", post_path(post.id) %></p>
-  </div>
+  </ul>
 <% end %>
+
+<div class="row">
+  <div class="col">
+
+    <table class="table">
+      <% @posts.each do |post| %>
+        <tr>
+          <td>
+            <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
+            <!--商品画像-->
+            <%= link_to post_path(post.id) do %>
+              <%= image_tag post.get_image(300,300) %>
+            <% end %>
+          </td> 
+
+          <td>
+            <br>
+            <p>商品名：<%= post.name %></p>
+            <p><%= post.introduction %></p>
+            <p>場所：<%= post.prefecture %></p>
+            <p>「<%= post.recommend %>」オススメ</P>
+          </td>
+
+          <td>
+            <br>
+            <!--ユーザー情報-->
+            <p><%= image_tag post.user.get_profile_image(80,80) %></p>
+            <p><%= post.user.name %></p>
+
+            <!--いいね・コメント-->
+            <p><%= link_to "★いいね： #{post.favorites.count}", post_path(post.id) %></p>
+            <p><%= link_to "コメント： #{post.post_comments.count}", post_path(post.id) %></p>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    
+  </div>
+</div>

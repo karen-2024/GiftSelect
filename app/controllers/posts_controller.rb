@@ -6,27 +6,43 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to posts_path
+    if @post.save
+      flash[:notice] = "You have created book successfully."
+      redirect_to posts_path
+    else
+      @posts = Post.all
+      render :index
+    end
   end
 
   def index
     @posts = Post.all
+    @post = Post.new
   end
 
   def show
     @post = Post.find(params[:id])
+    @user = User.find(@post.user_id)
     @post_comment = PostComment.new
   end
 
   def edit
     @post = Post.find(params[:id])
+    is_matching_login_user
   end
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    redirect_to post_path
+    is_matching_login_user
+
+    if @post.update(post_params)
+      flash[:notice] = "You have updated book successfully."
+      redirect_to post_path
+    else
+      @post = Post.find(params[:id])
+      @post.update(post_params)
+      render :edit
+    end
   end
 
   def destroy
@@ -39,5 +55,12 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:image, :name, :introduction, :amount, :package, :price, :prefecture, :location, :recommend, :title, :review)
+  end
+
+  def is_matching_login_user
+    @post = Post.find(params[:id])
+    unless @post.user.id == current_user.id
+      redirect_to posts_path
+    end
   end
 end

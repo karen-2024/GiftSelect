@@ -2,22 +2,48 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.img {
+  max-width: 100%;
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .top-wrapper {
   background-image: image-url('pexels-nietjuh-1906435-c.jpg');
   background-size: cover;
-  min-height: 80vh;
+  background-position: center top;
 }
 
 .top-container {
   text-align: center;
   margin: 0 auto;
-}
 
-h1 {
-  font-size: 110px;
-  font-weight: normal;
-  text-transform: uppercase;
-  padding-top: 300px;
-  padding-left: 50px;
-}
+  h1 {
+    font-weight: normal;
+    text-transform: uppercase;
+    
+  }
 
+
+  /* SP向けの設定 */
+  @media screen and (max-width: 600px) {
+    h1{
+      font-size: 50px;
+      padding-top: 6vh;
+      padding-bottom: 3vh;
+    }
+  }
+
+  /* PC向けの設定 */
+  @media screen and (min-width: 601px) {
+    h1{
+      font-size: 130px;
+      padding-top: 17vh;
+      padding-bottom: 10vh;
+    }
+  }
+}
