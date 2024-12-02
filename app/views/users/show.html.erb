@@ -1,56 +1,25 @@
-<h2>User 詳細</h2>
 
-<table class="user">
-  <tr>
-    <td><%= image_tag @user.get_profile_image(100,100) %></td>
-    <td>
-      <h3><%= @user.name %></h3>
-
-      <% if @user == current_user %>
-        <p><%= link_to "プロフィール編集",edit_user_path(@user) %></p>
-      <% end %>
-    </td>
-  </tr>
-</table>
-
-<br>
-
-<!-- ユーザーの投稿一覧 -->
-<h3>POST 一覧</h3>
-
-<div class="row">
-  <div class="col">
-
-    <table class="index">
-      <% @posts.each do |post| %>
-        <tr>
-          <td>
-            <!--商品画像-->
-            <%= link_to post_path(post.id) do %>
-              <%= image_tag post.get_image(300,300) %>
-            <% end %>
-          </td> 
-
-          <td>
-            <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
-            <p>商品名：<%= post.name %></p>
-            <p><%= post.introduction %></p>
-            <p>場所：<%= post.prefecture %></p>
-            <p>「<%= post.recommend %>」オススメ</P>
-          </td>
-
-          <td>
-            <!--ユーザー情報-->
-            <p><%= image_tag post.user.get_profile_image(80,80) %></p>
-            <p><%= post.user.name %></p>
-
-            <!--いいね・コメント-->
-            <p><%= link_to "★いいね： #{post.favorites.count}", post_path(post.id) %></p>
-            <p><%= link_to "コメント： #{post.post_comments.count}", post_path(post.id) %></p>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-    
+<div class="img1">
+  <div class="img1-title">
+    <h1>USER PAGE</h1>
   </div>
+</div>
+
+<div class='container'>
+
+  <div class="user">
+    <%= image_tag @user.get_profile_image(100,100), style: "border-radius: 50%; object-fit:cover;" %></td>
+    <h2><%= @user.name %></h2>
+
+    <% if @user == current_user %>
+      <h4><%= link_to "プロフィール編集",edit_user_path(@user) %></h4>
+    <% end %>
+  </div>
+
+  <br>
+
+  <!-- ユーザーの投稿一覧 -->
+  <h2>POST INDEX</h2>
+  <%= render 'posts/tile', posts: @posts %>
+
 </div>
