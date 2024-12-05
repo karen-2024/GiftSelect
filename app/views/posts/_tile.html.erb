@@ -6,27 +6,24 @@
         <div class="card">
 
           <div class="card-body rounded">
-            <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
             <!--商品画像-->
             <%= link_to post_path(post.id) do %>
               <%= image_tag post.get_image(300,300) %>
             <% end %>
 
             <br><br>
-            <strong>商品名：<%= post.name %></strong>
-            <p><%= post.introduction %></p>
+            <h5><strong>商品名：<%= post.name %></strong></h5>
 
             <p>場所：<%= post.prefecture %></p>
             <p>「<%= post.recommend %>」オススメ</p>
+            <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
+
+            <!--いいね-->
+            <p><%= link_to "★いいね： #{post.favorites.count}", post_path(post.id) %></p>
 
             <!--ユーザー情報-->
-            <p>User_name：<%= post.user.name %></p>
+            <strong>User_name：<%= post.user.name %></strong>
 
-            <!--いいね・コメント-->
-            <p>
-              <%= link_to "★いいね： #{post.favorites.count}", post_path(post.id) %>　　
-              <%= link_to "コメント： #{post.post_comments.count}", post_path(post.id) %>
-            </p>
           </div>
 
         </div>

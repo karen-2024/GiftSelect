@@ -6,25 +6,30 @@
 </div>
 
 <div class='container'>
+  <div class="row">
+    <div class="mx-auto col-10">
 
-  <br>
-  <table class="edit", width="100%">
-    <%= form_with model: @user do |f| %>
-      <tr>
-        <td width="20%"></td>
-        <td width="80%"></td>
-      </tr>
-      <tr>
-        <td><label for="inputImage">ProfileImage</label></td>
-        <td><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></td>
-      </tr>
-      <tr>
-        <td><label for="inputName">Name</label></td>
-        <td><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%></td>
-      </tr>
-      <tr>
-        <td><%= f.submit "変更を保存" %></td>
-      </tr>
-    <% end %>
-  </table>
+      <br>
+      <table class="edit", width="100%">
+        <%= form_with model: @user do |f| %>
+          <tr>
+            <td width="20%"></td>
+            <td width="80%"></td>
+          </tr>
+          <tr>
+            <td><label for="inputImage">ProfileImage</label></td>
+            <td><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <td><label for="inputName">Name</label></td>
+            <td><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%></td>
+          </tr>
+          <tr>
+            <td><%= f.submit "変更を保存" %></td>
+          </tr>
+        <% end %>
+      </table>
+
+    </div>
+  </div>
 </div>

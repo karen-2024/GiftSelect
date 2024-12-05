@@ -57,15 +57,15 @@
 
       <table width="100%">
         <tr>
-          <td width="12%">
+          <td width="15%">
             <%= image_tag @post.user.get_profile_image(80,80), style: "border-radius: 50%; object-fit:cover;" %>
           </td>
 
-          <td width="13%">
+          <td width="15%">
             <h4><%= link_to @post.user.name, user_path(@user.id) %></h4>
           </td>
 
-          <td width="75%">
+          <td width="70%">
             <h5>Title：<%= @post.title %></h5>
             Review：<%= @post.review %>
           </td>
