@@ -1,0 +1,22 @@
+
+<div class="img1">
+  <div class="img1-title">
+    <h1>POST INDEX</h1>
+  </div>
+</div>
+
+<div class='container'>
+
+  <!--エラーメッセージ-->
+  <% if @post.errors.any? %>
+    <h3><%= @post.errors.count %>error prohibited this obj from being saved:</h3>
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= render 'posts/tile', posts: @posts %>
+
+</div>

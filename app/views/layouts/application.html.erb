@@ -1,16 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <title>GiftSelect</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    <!--SCSS-->
+    <%= stylesheet_link_tag 'application' %>
+    <%= stylesheet_link_tag 'homes' %>
+    <%= stylesheet_link_tag 'posts' %>
+    <%= stylesheet_link_tag 'users' %>
+
+    <script src="https://kit.fontawesome.com/621a758cb6.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+        <div class="container">
+          <a class="navbar-brand" href="/">GiftSelect</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="#navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to 'POST 一覧', posts_path, class: 'nav-link text-light' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'New Post', new_post_path, class: 'nav-link text-light' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'My Page', user_path(current_user.id), class: 'nav-link text-light' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to "Sign in", new_user_registration_path, class: 'nav-link text-light' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Log in", new_user_session_path, class: 'nav-link text-light' %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <h5>
+        <% flash.each do |message_type, message| %>
+          <div class="flash-message <%= message_type %>"><%= message %></div>
+        <% end %>
+      </h5>
+      <%= yield %>
+    </main>
+
+    <footer class="bg-dark text-white pt-2">
+      <div class='container'>
+        <div class='row'>
+          <div class='mx-auto'>
+            <p>2024_kohigashi</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   </body>
 </html>

@@ -1,0 +1,64 @@
+
+<div class="img1">
+  <div class="img1-title">
+    <h1>POST EDIT</h1>
+  </div>
+</div>
+
+<div class='container'>
+  <div class="row">
+    <div class="mx-auto col-10">
+
+      <br>
+      <table class="edit", width="100%">
+        <%= form_with model: @post do |f| %>
+          <tr>
+            <td width="30%"></td>
+            <td width="70%"></td>
+          </tr>
+          <tr>
+            <td><label for="inputImage">商品画像</label></td>
+            <td><%= f.file_field :image, placeholder: "商品画像", accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <td><label for="inputName">商品名</label></td>
+            <td><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"商品名"%></td>
+          </tr>
+          <tr>
+            <td><label for="inputIntroduction">商品説明</label></td>
+            <td><%= f.text_area :introduction, autofocus: true, id:"inputIntroduction", placeholder:"商品説明"%></td>
+          </tr>
+          <tr>
+            <td><label for="inputAmount">個数</label></td>
+            <td><%= f.number_field :amount, autofocus: true, id:"inputAmount", placeholder:"例：20"%>個</td>
+          </tr>
+
+          <tr>
+            <!--個包装  有無 選択-->
+          </tr>
+
+          <tr>
+            <td><label for="inputPrice">価格</label></td>
+            <td><%= f.number_field :price, autofocus: true, id:"inputPrice", placeholder:"例：1500"%>円</td>
+          </tr>
+          <tr>
+            <td><label for="inputPrefecture">都道府県</label></td>
+            <td><%= f.select :prefecture, Post.prefectures.keys.map, autofocus: true, id:"inputPrefecture", placeholder:"都道府県"%></td>
+          </tr>
+          <tr>
+            <td><label for="inputLocation">場所（詳細）</label></td>
+            <td><%= f.text_field :location, autofocus: true, id:"inputIocation", placeholder:"例：○○○市、～～店"%></td>
+          </tr>
+          <tr>
+            <td><label for="inputRecommend">贈る相手・オススメ</label></td>
+            <td><%= f.select :recommend, Post.recommends.keys.map, autofocus: true, id:"inputRecommend", placeholder:"都道府県"%></td>
+          </tr>
+          <tr>
+            <td><%= f.submit "変更を保存" %></td>
+          </tr>
+        <% end %>
+      </table>
+
+    </div>
+  </div>
+</div>

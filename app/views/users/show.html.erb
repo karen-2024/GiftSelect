@@ -1,0 +1,25 @@
+
+<div class="img1">
+  <div class="img1-title">
+    <h1>USER PAGE</h1>
+  </div>
+</div>
+
+<div class='container'>
+
+  <div class="user">
+    <%= image_tag @user.get_profile_image(100,100), style: "border-radius: 50%; object-fit:cover;" %></td>
+    <h2><%= @user.name %></h2>
+
+    <% if @user == current_user %>
+      <h4><%= link_to "プロフィール編集",edit_user_path(@user) %></h4>
+    <% end %>
+  </div>
+
+  <br>
+
+  <!-- ユーザーの投稿一覧 -->
+  <h2>POST INDEX</h2>
+  <%= render 'posts/tile', posts: @posts %>
+
+</div>
