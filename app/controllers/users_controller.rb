@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :set_user, :only => [:show, :destroy]
+
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
@@ -15,11 +17,21 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
+  def destroy
+    @user = User.find(params[:id]) 
+    @user.destroy
+    flash[:notice] = 'ユーザーを削除しました。'
+    redirect_to root_path
+  end
 
   private
 
   def user_params
     params.require(:user).permit(:name, :profile_image)
+  end
+
+  def set_user
+    @user = User.find_by(:id => params[:id])
   end
 
 end

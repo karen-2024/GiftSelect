@@ -30,6 +30,10 @@
         </table>
       <% end %>
 
+      <h5 class="Withdrawal">
+        <strong><%= link_to "退会", user_path(current_user.id), class: "destroy-user", method: :delete, "data-confirm" => "本当に退会しますか？" %></strong>
+      </h5>
+
     </div>
   </div>
 </div>
