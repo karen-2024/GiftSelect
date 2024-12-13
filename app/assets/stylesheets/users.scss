@@ -6,9 +6,18 @@
 //show
 .user {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 3%;
+}
+
+.name {
+  padding-left: 30px;
+}
+
+.edit {
+  display: flex;
+  justify-content: flex-end;
 }
 
 //edit

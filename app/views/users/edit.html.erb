@@ -25,6 +25,10 @@
             <td><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%></td>
           </tr>
           <tr>
+            <td><label for="inputEmail">Email</label></td>
+            <td><%= f.email_field :email, autofocus: true, id:"inputEmail", placeholder:"メールアドレス"%></td>
+          </tr>
+          <tr>
             <td><%= f.submit "変更を保存" %></td>
           </tr>
         </table>

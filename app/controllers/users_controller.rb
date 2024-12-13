@@ -20,14 +20,14 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id]) 
     @user.destroy
-    flash[:notice] = 'ユーザーを削除しました。'
+    flash[:notice] = '退会しました。'
     redirect_to root_path
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :profile_image)
+    params.require(:user).permit(:name, :email, :profile_image)
   end
 
   def set_user

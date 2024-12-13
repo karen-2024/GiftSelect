@@ -7,13 +7,13 @@
 
 <div class='container'>
 
+  <% if @user == current_user %>
+    <h5 class="edit"><%= link_to "プロフィール編集",edit_user_path(@user) %></h5>
+  <% end %>
+
   <div class="user">
     <%= image_tag @user.get_profile_image(100,100), style: "border-radius: 50%; object-fit:cover;" %></td>
-    <h2><%= @user.name %></h2>
-
-    <% if @user == current_user %>
-      <h5><%= link_to "プロフィール編集",edit_user_path(@user) %></h5>
-    <% end %>
+    <h2 class="name"><%= @user.name %></h2>
   </div>
 
   <br>
