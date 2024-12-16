@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_post, only: [:edit, :update]
 
   def new
     @post = Post.new
@@ -32,7 +32,6 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    is_matching_login_user
   end
 
   def update
@@ -59,16 +58,8 @@ class PostsController < ApplicationController
     params.require(:post).permit(:image, :name, :introduction, :amount, :package, :price, :prefecture, :location, :recommend, :title, :review)
   end
 
-  def is_matching_login_user
+  def correct_post
     @post = Post.find(params[:id])
-    unless @post.user.id == current_user.id
-      redirect_to posts_path
-    end
-  end
-
-  def correct_user
-    @post = Post.find(params[:id])
-    @user = @post.user
     unless @post.user.id == current_user.id
       redirect_to posts_path
     end
