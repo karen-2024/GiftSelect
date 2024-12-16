@@ -1,5 +1,8 @@
 class PostsController < ApplicationController
 
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update]
+
   def new
     @post = Post.new
   end
@@ -9,7 +12,7 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
     if @post.save
       flash[:notice] = "Posting was successful."
-      redirect_to posts_path(@post.id)
+      redirect_to post_path(@post.id)
     else
       flash[:notice] = "Posting failed."
       render :new
@@ -58,6 +61,14 @@ class PostsController < ApplicationController
 
   def is_matching_login_user
     @post = Post.find(params[:id])
+    unless @post.user.id == current_user.id
+      redirect_to posts_path
+    end
+  end
+
+  def correct_user
+    @post = Post.find(params[:id])
+    @user = @post.user
     unless @post.user.id == current_user.id
       redirect_to posts_path
     end
