@@ -12,7 +12,6 @@ class User < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :email
-    validates :profile_image
   end
 
   def get_profile_image(width, height)
