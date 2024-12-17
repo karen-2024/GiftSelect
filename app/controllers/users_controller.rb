@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :set_user, :only => [:show, :destroy]
 
   def show
@@ -37,6 +38,10 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find_by(:id => params[:id])
+  end
+
+  def authenticate_user!
+    redirect_to root_path, alert: 'ログインが必要です' unless current_user
   end
 
 end
