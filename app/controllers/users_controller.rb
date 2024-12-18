@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
-    unless @user.user.id == current_user.id
+    unless @user == current_user
       redirect_to posts_path
     end
   end
