@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update]
   before_action :set_user, :only => [:show, :destroy]
 
   def show
@@ -42,6 +43,13 @@ class UsersController < ApplicationController
 
   def authenticate_user!
     redirect_to root_path, alert: 'ログインが必要です' unless current_user
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    unless @user.user.id == current_user.id
+      redirect_to posts_path
+    end
   end
 
 end
