@@ -29,3 +29,16 @@
 .new h4 {
   margin-top: 20px;
 }
+
+//_tile
+.card {
+  column-count: 3;
+  margin: 5px;
+}
+
+.card-body {
+  break-inside: avoid;
+  margin-bottom: 30px;
+  margin: 0 0 10px;
+  padding: 0.5em 1em;
+}
