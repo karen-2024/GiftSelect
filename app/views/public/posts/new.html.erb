@@ -6,59 +6,62 @@
 </div>
 
 <div class='container'>
-  <div class="new">
+  <div class="row">
 
-    <% if @post.errors.any? %>
-      <%= @post.errors.count %>件のエラーが発生しました
-      <ul>
-        <% @post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    <% end %>
+    <div class="new">
+      <% if @post.errors.any? %>
+        <%= @post.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
 
-    <%= form_with model: @post do |f| %>
+      <%= form_with model: @post do |f| %>
 
-      <h4>画像</h4>
-      <%= f.file_field :image, accept: "image/*" %>
+        <h4>画像</h4>
+        <%= f.file_field :image, accept: "image/*" %>
 
-      <h4>商品名</h4>
-      <%= f.text_field :name %>
+        <h4>商品名</h4>
+        <%= f.text_field :name %>
 
-      <h4>商品説明</h4>
-      <%= f.text_area :introduction %>
+        <h4>商品説明</h4>
+        <%= f.text_area :introduction %>
 
-      <h4>個数</h4>
-      <%= f.number_field :amount %>個
+        <h4>個数</h4>
+        <%= f.number_field :amount %>個
 
-      <!--包装 有無-->
-      <h5>※個包装
-        <%= f.radio_button :package, :"有り" %>
-        <%= f.label :package, "有り", value: :"有り"  %>
-        <%= f.radio_button :package, :"無し" %>
-        <%= f.label :package, "無し", value: :"無し"  %>
-      </h5>
+        <!--包装 有無-->
+        <h5>※個包装
+          <%= f.radio_button :package, :"有り" %>
+          <%= f.label :package, "有り", value: :"有り"  %>
+          <%= f.radio_button :package, :"無し" %>
+          <%= f.label :package, "無し", value: :"無し"  %>
+        </h5>
 
-      <h4>価格</h4>
-      <%= f.number_field :price %>円
+        <h4>価格</h4>
+        <%= f.number_field :price %>円
 
-      <h4>都道府県</h4>
-      <%= f.select :prefecture, Post.prefectures.keys.map %>
+        <h4>都道府県</h4>
+        <%= f.select :prefecture, Post.prefectures.keys.map %>
 
-      <h4>場所（詳細）</h4>
-      <%= f.text_field :location %>
+        <h4>場所（詳細）</h4>
+        <%= f.text_field :location %>
 
-      <h4>贈る相手・オススメ</h4>
-      <%= f.select :recommend, Post.recommends.keys.map %>
+        <h4>贈る相手・オススメ</h4>
+        <%= f.select :recommend, Post.recommends.keys.map %>
 
-      <h4>Title</h4>
-      <%= f.text_field :title %>
+        <h4>Title</h4>
+        <%= f.text_field :title %>
 
-      <h4>Review</h4>
-      <%= f.text_area :review, cols: '50' %>
-      
-      <br>
-      <%= f.submit '投稿' %>
-    <% end %>
+        <h4>Review</h4>
+        <%= f.text_area :review, cols: '50' %>
+        
+        <br>
+        <%= f.submit '投稿' %>
+      <% end %>
+    </div>
+
   </div>
 </div>

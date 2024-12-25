@@ -46,7 +46,7 @@ class Post < ApplicationRecord
 
   def self.search_for(content, method)
     if method == 'perfect'
-      Post.where(title: content)
+      Post.where(name: content)
     elsif method == 'forward'
       Post.where('name LIKE ?', content + '%')
     elsif method == 'backward'

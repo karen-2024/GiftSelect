@@ -6,8 +6,8 @@
 
 <% if @model == 'user' %>
     <h3>Users search for "<%= @content %>"</h3>
-    <%= render 'users/index', users: @records %>
+    <%= render 'public/users/index', users: @records %>
 <% elsif @model == 'post' %>
     <h3>Posts search for "<%= @content %>"</h3>
-    <%= render 'posts/tile', posts: @records %>
+    <%= render 'public/posts/tile', posts: @records %>
 <% end %>

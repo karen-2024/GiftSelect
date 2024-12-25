@@ -6,17 +6,19 @@
 </div>
 
 <div class='container'>
+  <div class="row">
 
-  <!--エラーメッセージ-->
-  <% if @post.errors.any? %>
-    <h3><%= @post.errors.count %>error prohibited this obj from being saved:</h3>
-    <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
+    <!--エラーメッセージ-->
+    <% if @post.errors.any? %>
+      <h3><%= @post.errors.count %>error prohibited this obj from being saved:</h3>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
 
-  <%= render 'public/posts/tile', posts: @posts %>
+    <%= render 'public/posts/tile', posts: @posts %>
 
+  </div>
 </div>
