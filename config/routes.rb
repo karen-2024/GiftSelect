@@ -1,14 +1,24 @@
 Rails.application.routes.draw do
 
-  devise_for :users
-  root to: "homes#top"
+  devise_for :admin, skip: [:registrations, :password], controllers: {
+    sessions: 'admin/sessions'
+  }
 
-  resources :posts do
-    resource :favorite, only: [:create, :destroy]
-    resources :post_comments, only: [:create, :destroy]
+  namespace :admin do
+    get 'dashboards', to: 'dashboards#index'
+    resources :users, only: [:destroy]
   end
 
-  resources :users, only: [:show, :index, :edit, :update, :destroy]
+  scope module: :public do
+    devise_for :users
+    root to: "homes#top"
+    resources :posts do
+      resource :favorite, only: [:create, :destroy]
+      resources :post_comments, only: [:create, :destroy]
+    end
+    resources :users, only: [:show, :index, :edit, :update, :destroy]
+    
+  end
 
   get "/search", to: "searches#search"
 
