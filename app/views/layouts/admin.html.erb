@@ -29,7 +29,7 @@
                   <%= link_to 'User index', admin_dashboards_path, class: 'nav-link text-light' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-light' %>
+                  <%= link_to 'Log out', destroy_admin_session_path, method: :delete, class: 'nav-link text-light' %>
                 </li>
               <% else %>
                 <li class="nav-item">
@@ -44,6 +44,9 @@
     </header>
 
     <main>
+      <div class="d-flex justify-content-center mb-2">
+        <%= render 'admin/searches/form' %>
+      </div>
       <%= yield %>
     </main>
 
@@ -53,5 +56,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   </body>
-
 </html>
