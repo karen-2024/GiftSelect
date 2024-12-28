@@ -38,7 +38,7 @@ class Public::UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find_by(:id => params[:id])
+    @user = User.find( params[:id])
   end
 
   def authenticate_user!
