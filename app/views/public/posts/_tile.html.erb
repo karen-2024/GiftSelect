@@ -7,18 +7,27 @@
          <%= image_tag post.get_image(300,300) %>
       <% end %>
 
-      <br><br>
-      <h5><strong>商品名：<%= post.name %></strong></h5>
-
-      <p>場所：<%= post.prefecture %></p>
-      <p>「<%= post.recommend %>」オススメ</p>
-      <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
-
-      <!--いいね-->
-      <p><%= link_to "★いいね： #{post.favorites.count}", post_path(post.id) %></p>
-
-      <!--ユーザー情報-->
-      <strong>User_name：　<%= post.user.name %></strong>
+      <br>
+      <table>
+        <tr>
+          <th><h5><strong>商品名：<%= post.name %></strong></h5></th>
+        </tr>
+        <tr>
+          <td>場所：<%= post.prefecture %></td>
+        </tr>
+        <tr>
+          <td>「<%= post.recommend %>」オススメ</td>
+        </tr>
+        <tr>
+          <td><%= link_to "★いいね： #{post.favorites.count}", post_path(post.id) %></td>
+        </tr>
+        <tr>
+          <td><strong>User_name：　<%= post.user.name %></strong></td>
+        </th>
+        <tr>
+          <td>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+      </table>
     </div>
   </div>
 <% end %>
