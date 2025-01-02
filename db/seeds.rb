@@ -14,9 +14,4 @@ olivia = User.find_or_create_by!(email: "olivia@gameil.com") do |user|
   user.password = "olivia24"
 end
 
-admin = User.find_or_create_by!(email: "admin@example.com") do |user|
-  user.name = "管理者"
-  user.password = "#{ENV['SECRET_KEY']}"
-end
-
 puts "seedの実行が完了しました"
