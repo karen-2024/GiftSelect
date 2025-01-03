@@ -19,6 +19,9 @@
           <td>「<%= post.recommend %>」オススメ</td>
         </tr>
         <tr>
+          <td><%= render "public/posts/static_rate", post: post %></td>
+        </tr>
+        <tr>
           <td><%= link_to "★いいね： #{post.favorites.count}", post_path(post.id) %></td>
         </tr>
         <tr>

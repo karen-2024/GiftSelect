@@ -41,6 +41,7 @@
         詳細：<%= @post.location %>
       </p>
       <p>「<%= @post.recommend %>」オススメ</P>
+      <p><%= render "public/posts/static_rate", post: @post %></p>
       <p>
         <% if @post.favorited_by?(current_user) %>
           <%= link_to post_favorite_path(@post), method: :delete do %>
