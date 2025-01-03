@@ -6,19 +6,23 @@
 </div>
 
 <div class='container'>
+  <!--エラーメッセージ-->
+  <% if @post.errors.any? %>
+    <h3><%= @post.errors.count %>error prohibited this obj from being saved:</h3>
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= link_to "新しい順", posts_path(sort: 'created_at DESC') %> 
+  |
+  <%= link_to "古い順", posts_path(sort: 'created_at ASC') %> 
+  |
+  <%= link_to "評価の高い順", posts_path(sort: 'star DESC') %>
+
   <div class="row">
-
-    <!--エラーメッセージ-->
-    <% if @post.errors.any? %>
-      <h3><%= @post.errors.count %>error prohibited this obj from being saved:</h3>
-      <ul>
-        <% @post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    <% end %>
-
     <%= render 'public/posts/tile', posts: @posts %>
-
   </div>
 </div>
