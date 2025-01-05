@@ -8,9 +8,16 @@ class Public::SearchesController < ApplicationController
 
     if @model  == "user"
       @records = User.search_for(@content, @method)
-    else
+    elsif @model == 'post'
       @records = Post.search_for(@content, @method)
+    elsif @model == 'tag'
+      @records = Tag.search_posts_for(@content, @method)
     end
   end
 
+  def search_tag
+    @tag = Tag.find(params[:tag_id])
+    @tag_list = Tag.all
+    @posts = @tag.posts
+  end
 end

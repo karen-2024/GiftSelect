@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     end
     resources :users, only: [:show, :index, :edit, :update, :destroy]
     get "/search", to: "searches#search"
+    get "search_tag", to: "searches#search_tag"
   end
 
 end

@@ -52,6 +52,9 @@
         <h4>贈る相手・オススメ</h4>
         <%= f.select :recommend, Post.recommends.keys.map %>
 
+        <h4>タグ　(「,」で区切ると複数タグ登録できます)</h4>
+        <%= f.text_field :name, value: @tag_list, class: 'form-control' %>
+
         <% if @post.id.nil? %>
           <div class="form-group" id="star">
             <h4><%= f.label :star %></h4>

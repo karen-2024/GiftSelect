@@ -1,0 +1,21 @@
+<div class="img1">
+  <div class="img1-title">
+    <h1>Search Tag</h1>
+  </div>
+</div>
+
+<div class='container'>
+  <h3>タグが「<%= @tag.name %>」の投稿一覧</h3>
+
+    <!--タグリスト-->
+    <% @tag_list.each do |list|%>
+      <i class="fa-sharp fa-solid fa-tag" ></i>
+      <%= link_to list.name,search_tag_path(tag_id: list.id) %>
+      <%= "(#{list.posts.count})" %>
+    <% end %>
+    
+  <div class="row">
+    <%= render 'public/posts/tile', posts: @posts %>
+  </div>
+
+</div>

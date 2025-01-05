@@ -64,6 +64,11 @@
           </tr>
 
           <tr>
+            <td><label for="inputName">タグ　(「,」で区切ると複数タグ登録できます)</label></td>
+            <td><%= f.text_field :name, autofocus: true, value: @tag_list, class: 'form-control' %></td>
+          </tr>
+
+          <tr>
             <td><label for="inputTitle">Title</label></td>
             <td><%= f.text_field :title, autofocus: true, id:"inputTitle" %></td>
           </tr>
