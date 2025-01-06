@@ -10,13 +10,14 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    tag_list = params[:post][:name].split(',')
+    tag_list = params[:post][:tagname].split(',')
     if @post.save
       @post.save_tags(tag_list)
       flash[:notice] = "Posting was successful."
       redirect_to post_path(@post.id)
     else
       flash[:notice] = "Posting failed."
+      @posts = Post.all
       render :new
     end
   end
@@ -24,7 +25,6 @@ class Public::PostsController < ApplicationController
   def index
     @posts = Post.all.order(params[:sort])
     @post = Post.new
-    @tag_list = Tag.all
   end
 
   def show
@@ -37,12 +37,12 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    @tag_list = @post.tags.pluck(:name).join(',')
+    @tag_list = @post.tags.pluck(:tagname).join(',')
   end
 
   def update
     @post = Post.find(params[:id])
-    tag_list=params[:post][:name].split(',')
+    tag_list=params[:post][:tagname].split(',')
     if @post.update(post_params)
       @post.save_tags(tag_list)
       flash[:notice] = "You have updated post successfully."
@@ -63,7 +63,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :name, :introduction, :amount, :package, :price, :prefecture, :location, :recommend, :title, :review, :star)
+    params.require(:post).permit(:image, :name, :introduction, :amount, :package, :price, :prefecture, :location, :recommend, :title, :review, :star, :tag_id)
   end
 
   def correct_post

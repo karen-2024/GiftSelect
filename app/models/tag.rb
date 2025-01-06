@@ -4,18 +4,18 @@ class Tag < ApplicationRecord
 
   scope :merge_posts, -> (tags){ }
 
-  validates :name, uniqueness: true, presence: true
+  validates :tagname, uniqueness: true, presence: true
 
   def self.search_posts_for(content, method)
 
     if method == 'perfect'
-      tags = Tag.where(name: content)
+      tags = Tag.where(tagname: content)
     elsif method == 'forward'
-      tags = Tag.where('name LIKE ?', content + '%')
+      tags = Tag.where('tagname LIKE ?', content + '%')
     elsif method == 'backward'
-      tags = Tag.where('name LIKE ?', '%' + content)
+      tags = Tag.where('tagname LIKE ?', '%' + content)
     else
-      tags = Tag.where('name LIKE ?', '%' + content + '%')
+      tags = Tag.where('tagname LIKE ?', '%' + content + '%')
     end
 
     return tags.inject(init = []) {|result, tag| result + tag.posts}

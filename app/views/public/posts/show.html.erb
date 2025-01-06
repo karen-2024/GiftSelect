@@ -47,7 +47,7 @@
       <p>
         <% @post_tags.each do |tag| %>
         <i class="fa-sharp fa-solid fa-tag"></i>
-          <%= link_to tag.name,search_tag_path(tag_id: tag.id) %>
+          <%= link_to tag.tagname,search_tag_path(tag_id: tag.id) %>
         <% end %>
       </p>
 
