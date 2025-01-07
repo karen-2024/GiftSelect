@@ -24,13 +24,20 @@
 
   <div class="row">
     <div class="col">
-      <p><%= image_tag @post.get_image(700,700) %></p>
+      <p><%= image_tag @post.get_image(700,500) %></p>
 
       <br>
       <h4>商品名：<%= @post.name %></h4>
       <p>説明：<%= @post.introduction %></p>
 
-      <br>
+      <!-- タグリスト -->
+      <p>
+        <% @post_tags.each do |tag| %>
+        <i class="fa-sharp fa-solid fa-tag"></i>
+          <%= link_to tag.tagname,search_tag_path(tag_id: tag.id) %>
+        <% end %>
+      </p>
+
       <p>
         数量：<%= @post.amount %>　　
         【　個包装：<%= @post.package %>　】
@@ -42,14 +49,6 @@
       </p>
       <p>「<%= @post.recommend %>」オススメ</P>
       <p><%= render "public/posts/static_rate", post: @post %></p>
-
-      <!-- タグリスト -->
-      <p>
-        <% @post_tags.each do |tag| %>
-        <i class="fa-sharp fa-solid fa-tag"></i>
-          <%= link_to tag.tagname,search_tag_path(tag_id: tag.id) %>
-        <% end %>
-      </p>
 
       <p>
         <% if @post.favorited_by?(current_user) %>
