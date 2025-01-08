@@ -13,6 +13,8 @@ class Public::SearchesController < ApplicationController
     elsif @model == 'tag'
       @records = Tag.search_posts_for(@content, @method)
     end
+
+    @tag_list = Tag.all
   end
 
   def search_tag

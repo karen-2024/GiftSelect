@@ -44,6 +44,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     tag_list=params[:post][:tagname].split(',')
     if @post.update(post_params)
+      @post.tags.destroy_all
       @post.save_tags(tag_list)
       flash[:notice] = "You have updated post successfully."
       redirect_to post_path

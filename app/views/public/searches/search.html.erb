@@ -5,15 +5,25 @@
 </div>
 
 <div class='container'>
-  <div class="row">
 
     <% if @model == 'user' %>
       <h3>Users search for "<%= @content %>"</h3>
-      <%= render 'public/users/index', users: @records %>
+      <div class="row">
+        <%= render 'public/users/index', users: @records %>
+      </div>
+
     <% elsif @model == 'post' || @model == 'tag' %>
       <h3>Posts search for "<%= @content %>"</h3>
-      <%= render 'public/posts/tile', posts: @records %>
+      <div class="tag">
+        <% @tag_list.each do |list|%>
+          <i class="fa-sharp fa-solid fa-tag" ></i>
+          <%= link_to list.tagname,search_tag_path(tag_id: list.id) %>
+          <%= "(#{list.posts.count})" %>
+        <% end %>
+      </div>
+      <div class="row">
+        <%= render 'public/posts/tile', posts: @records %>
+      </div>
     <% end %>
 
-  </div>
 </div>
