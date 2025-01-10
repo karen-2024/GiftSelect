@@ -26,15 +26,16 @@
     <div class="col">
       <p><%= image_tag @post.get_image(700,500) %></p>
 
-      <br>
-      <h4>商品名：<%= @post.name %></h4>
-      <p>説明：<%= @post.introduction %></p>
+      <p>
+        <h4><strong>商品名：<%= @post.name %></strong></h4>
+        <h5>説明：<%= @post.introduction %></h5>
+      </p>
 
       <!-- タグリスト -->
       <p>
         <% @post_tags.each do |tag| %>
         <i class="fa-sharp fa-solid fa-tag"></i>
-          <%= link_to tag.tagname,search_tag_path(tag_id: tag.id) %>
+          <%= link_to tag.tagname,search_tag_path(tag_id: tag.id) %>　
         <% end %>
       </p>
 
@@ -64,20 +65,15 @@
       </p>
 
       <div class="post-review">
-      <br>
+        <h4 class="review-title">Review</h4>
         <table width="100%">
           <tr>
             <td width="15%">
               <%= image_tag @post.user.get_profile_image(80,80), style: "border-radius: 50%; object-fit:cover;" %>
             </td>
-
-            <td width="15%">
-              <h4><%= link_to @post.user.name, user_path(@user.id) %></h4>
-            </td>
-
-            <td width="70%">
-              <h5>Title：<%= @post.title %></h5>
-              Review：<%= @post.review %>
+            <td width="85%">
+              <h5 class="r-title"><%= link_to @post.user.name, user_path(@user.id) %></h5>
+              <%= @post.review %>
             </td>
           </tr>
         </table>
@@ -90,11 +86,11 @@
   <div class="row">
     <div class="col">
 
-      <h3 class="comment-title">Comment</h3>
       <div class="comment">
+        <h3 class="comment-title">Comment</h3>
         <%= form_with model: [@post, @post_comment] do |f| %>
-          <%= f.text_area :comment, style: "width:90%", placeholder: "コメントをここに" %>
-          <%= f.submit "送信する" %></td>
+          <%= f.text_area :comment, style: "width:80%", placeholder: "コメントをここに" %>
+          <%= f.submit "送信する" %>
         <% end %>
       </div>
 

@@ -17,7 +17,6 @@ class Post < ApplicationRecord
     validates :prefecture
     validates :location
     validates :recommend
-    validates :title
     validates :review
   end
 

@@ -13,7 +13,14 @@
   margin-bottom: 10px;
 }
 
-.post-review {
+.review-title {
+  border-width: 2px;
+  border-style: ridge;
+  padding: 5px 15px;
+  margin: 30px 0px 20px;
+}
+
+.comment {
   border-style: dotted;
   border-width: 1px 0px 0px;
   margin-top: 40px;

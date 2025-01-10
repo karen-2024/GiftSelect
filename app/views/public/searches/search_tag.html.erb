@@ -5,15 +5,18 @@
 </div>
 
 <div class='container'>
-  <h3>タグが「<%= @tag.tagname %>」の投稿一覧</h3>
-
+  <h3><strong>Posts search for　"<%= @tag.tagname %>"</strong></h3>
+  <br>
+  <div class="mr-3">
+    <%= render "public/searches/tag_form" %>
     <!--タグリスト-->
     <% @tag_list.each do |list|%>
       <i class="fa-sharp fa-solid fa-tag" ></i>
       <%= link_to list.tagname,search_tag_path(tag_id: list.id) %>
-      <%= "(#{list.posts.count})" %>
+      <%= "(#{list.posts.count})" %>　
     <% end %>
-    
+  </div>
+
   <div class="row">
     <%= render 'public/posts/tile', posts: @posts %>
   </div>

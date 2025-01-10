@@ -65,7 +65,7 @@
             $(document).on('turbolinks:load', function() {
               let elem = document.querySelector('#post_raty');
               if (elem == null) return;
-        
+
               elem.innerHTML = ""
               let opt = {  
                 starOn: "<%= asset_path('star-on.png') %>",
@@ -82,14 +82,10 @@
           </div>
         <% end %>
 
-        <h4>Title</h4>
-        <%= f.text_field :title %>
-
         <h4>Review</h4>
         <%= f.text_area :review, cols: '50' %>
-        
-        <br>
-        <%= f.submit '投稿' %>
+
+        <p><%= f.submit '投稿' %></p>
       <% end %>
     </div>
 
