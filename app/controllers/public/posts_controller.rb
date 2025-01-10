@@ -31,7 +31,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @user = User.find(@post.user_id)
     @post_comment = PostComment.new
-    @tag_list = @post.tags.pluck(:name).join(',')
+    @tag_list = @post.tags.pluck(:tagname).join(',')
     @post_tags = @post.tags
   end
 
