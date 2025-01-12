@@ -3,6 +3,40 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 
+//画面構成
+.contents {
+  display: flex;
+  justify-content: space-between ;
+}
+
+article {
+  width: 80%;
+}
+
+aside {
+  width: 20%;
+  margin-left: 15px;
+}
+
+aside h4 {
+  font-weight: normal;
+  font-family: 'Philosopher', serif;
+  text-transform: uppercase;
+  border-bottom: 2px solid orange;
+  margin-top: 5px;
+}
+
+aside ul {
+  list-style: none;
+  padding-left: 10px;
+  margin-bottom: 50px;
+}
+
+aside li {
+  border-bottom: 1px dotted;
+  padding: 10px 0;
+}
+
 // show
 .show-title {
   display: flex;
@@ -43,9 +77,22 @@
   margin-top: 20px;
 }
 
+
 //_tile
 .wrap {
   margin: 10px auto;
+}
+
+.card-body {
+  padding: 0px;
+}
+
+.post-image {
+  margin: 15px 20px ;
+}
+
+.post-text {
+  margin: 10px 20px;
 }
 
   /* SP向けの設定 */
@@ -64,7 +111,7 @@
   }
 
   /* PC向けの設定 */
-  @media screen and (min-width: 1001px) {
+  @media screen and (min-width: 1200px) {
     .wrap {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;

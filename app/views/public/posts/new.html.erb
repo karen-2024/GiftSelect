@@ -24,10 +24,10 @@
         <%= f.file_field :image, accept: "image/*" %>
 
         <h4>商品名</h4>
-        <%= f.text_field :name %>
+        <%= f.text_field :name, size: 45 %>
 
         <h4>商品説明</h4>
-        <%= f.text_area :introduction %>
+        <%= f.text_area :introduction, cols: '50' %>
 
         <h4>個数</h4>
         <%= f.number_field :amount %>個
@@ -47,7 +47,7 @@
         <%= f.select :prefecture, Post.prefectures.keys.map %>
 
         <h4>場所（詳細）</h4>
-        <%= f.text_field :location %>
+        <%= f.text_field :location, size: 45 %>
 
         <h4>贈る相手・オススメ</h4>
         <%= f.select :recommend, Post.recommends.keys.map %>

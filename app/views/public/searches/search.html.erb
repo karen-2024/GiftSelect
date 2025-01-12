@@ -7,27 +7,24 @@
 <div class='container'>
 
   <% if @model == 'user' %>
-    <h3>Users search for "<%= @content %>"</h3>
+    <h3><strong>Users search for "<%= @content %>"</strong></h3>
     <div class="row">
       <%= render 'public/users/index', users: @records %>
     </div>
 
   <% elsif @model == 'post' || @model == 'tag' %>
-    <h3><strong>Posts search for　"<%= @content %>"</strong></h3>
-    <br>
-    <div class="mr-3">
-      <%= render "public/searches/tag_form" %>
-      <!--タグリスト-->
-      <% @tag_list.each do |list|%>
-        <i class="fa-sharp fa-solid fa-tag" ></i>
-        <%= link_to list.tagname,search_tag_path(tag_id: list.id) %>
-        <%= "(#{list.posts.count})" %>　
-      <% end %>
-    </div>
+    <h3 class="post"><strong>Posts search for　"<%= @content %>"</strong></h3>
     
     <div class="row">
-      <%= render 'public/posts/tile', posts: @records %>
+      <div class="contents">
+        <article>
+          <%= render 'public/posts/tile', posts: @records %>
+        </article>
+
+        <aside>
+          <%= render 'public/posts/sub_menu', posts: @posts %>
+        </aside>
+      </div>
     </div>
   <% end %>
-
 </div>

@@ -31,11 +31,11 @@
           </tr>
           <tr>
             <td><label for="inputName">商品名</label></td>
-            <td><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"商品名"%></td>
+            <td><%= f.text_field :name, size: 45, autofocus: true, id:"inputName", placeholder:"商品名"%></td>
           </tr>
           <tr>
             <td><label for="inputIntroduction">商品説明</label></td>
-            <td><%= f.text_area :introduction, autofocus: true, id:"inputIntroduction", placeholder:"商品説明"%></td>
+            <td><%= f.text_area :introduction, cols: '50', autofocus: true, id:"inputIntroduction", placeholder:"商品説明"%></td>
           </tr>
           <tr>
             <td><label for="inputAmount">個数</label></td>
@@ -56,7 +56,7 @@
           </tr>
           <tr>
             <td><label for="inputLocation">場所（詳細）</label></td>
-            <td><%= f.text_field :location, autofocus: true, id:"inputIocation", placeholder:"例：○○○市、～～店"%></td>
+            <td><%= f.text_field :location, size: 45, autofocus: true, id:"inputIocation", placeholder:"例：○○○市、～～店"%></td>
           </tr>
           <tr>
             <td><label for="inputRecommend">贈る相手・オススメ</label></td>
@@ -65,7 +65,7 @@
 
           <tr>
             <td><label for="inputTagname">タグ(「,」で区切ると<br>複数タグ登録できます)</label></td>
-            <td><%= f.text_field :tagname, autofocus: true, id:"inputTagname", placeholder:"例：和菓子,お餅" %></td>
+            <td><%= f.text_field :tagname, size: 45, autofocus: true, id:"inputTagname", placeholder:"例：和菓子,お餅" %></td>
           </tr>
 
           <tr>

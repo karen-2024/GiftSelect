@@ -6,6 +6,7 @@
 </div>
 
 <div class='container'>
+
   <% if @user == current_user %>
     <h5 class="edit"><%= link_to "プロフィール編集",edit_user_path(@user) %></h5>
   <% end %>
@@ -15,10 +16,41 @@
     <h1 class="name"><%= @user.name %></h1>
   </div>
 
-  <div class="index">
-    <h2>POST INDEX</h2>
-    <div class="row">
-      <%= render 'public/posts/tile', posts: @posts %>
+  <div class="row">
+    <div class="contents">
+      <article>
+        <div class="index">
+          <h2>POST INDEX</h2>
+          <div class="row">
+            <%= render 'public/posts/tile', posts: @posts %>
+          </div>
+        </div>
+      </article>
+
+      <aside>
+        <h4>Sort</h4>
+        <ul>
+          <li><%= link_to "新しい順", user_path(sort: 'created_at DESC') %></li>
+          <li><%= link_to "古い順", user_path(sort: 'created_at ASC') %></li>
+          <li><%= link_to "評価の高い順", user_path(sort: 'star DESC') %></li>
+        </ul>
+
+        <h4>Search Tag</h4>
+        <div class="mr-3">
+          <%= render "public/searches/tag_form" %>
+        </div>
+
+        <!--タグリスト-->
+        <ul>
+          <% @tag_list.each do |list|%>
+            <li>
+              <i class="fa-sharp fa-solid fa-tag" ></i>
+              <%= link_to list.tagname,search_tag_path(tag_id: list.id) %>
+              <%= "(#{list.posts.count})" %>
+            </li>
+          <% end %>
+        </ul>
+      </aside>
     </div>
   </div>
 </div>

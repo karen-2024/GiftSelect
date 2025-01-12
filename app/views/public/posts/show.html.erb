@@ -6,117 +6,115 @@
 </div>
 
 <div class='container'>
-
-  <div class="show-title">
-    <h5>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></h5>
-
-    <h5 class="link"><!--編集ボタン-->
-      <% if @post.user == current_user %>
-        <%= link_to "Edit",edit_post_path(@post) %>
-      <% end %>
-      　
-      <!--削除ボタン-->
-      <% if @post.user == current_user %>
-        <%= link_to "Delete", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-      <% end %>
-    </h5>
-  </div>
-
   <div class="row">
-    <div class="col">
-      <p><%= image_tag @post.get_image(700,500) %></p>
 
-      <p>
-        <h4><strong>商品名：<%= @post.name %></strong></h4>
-        <h5>説明：<%= @post.introduction %></h5>
-      </p>
+    <div class="contents">
+      <article>
+        <div class="show-title">
+          <h5>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></h5>
 
-      <!-- タグリスト -->
-      <p>
-        <% @post_tags.each do |tag| %>
-        <i class="fa-sharp fa-solid fa-tag"></i>
-          <%= link_to tag.tagname,search_tag_path(tag_id: tag.id) %>　
+          <h5 class="link"><!--編集ボタン-->
+            <% if @post.user == current_user %>
+              <%= link_to "Edit",edit_post_path(@post) %>
+            <% end %>
+            　
+            <!--削除ボタン-->
+            <% if @post.user == current_user %>
+              <%= link_to "Delete", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+            <% end %>
+          </h5>
+        </div>
+
+        <p><%= image_tag @post.get_image(700,500) %></p>
+
+        <p>
+          <h4><strong>商品名：<%= @post.name %></strong></h4>
+          <h5>説明：<%= @post.introduction %></h5>
+        </p>
+
+        <!-- タグリスト -->
+        <p>
+          <% @post_tags.each do |tag| %>
+          <i class="fa-sharp fa-solid fa-tag"></i>
+            <%= link_to tag.tagname,search_tag_path(tag_id: tag.id) %>　
+          <% end %>
+        </p>
+
+        <p>
+          数量：<%= @post.amount %>　　
+          【　個包装：<%= @post.package %>　】
+        </p>
+        <p>価格：<%= @post.price %>円</p>
+        <p>
+          場所：<%= @post.prefecture %>　　　
+          詳細：<%= @post.location %>
+        </p>
+        <p>「<%= @post.recommend %>」オススメ</P>
+        <p><%= render "public/posts/static_rate", post: @post %></p>
+
+        <p>
+          <% if @post.favorited_by?(current_user) %>
+            <%= link_to post_favorite_path(@post), method: :delete do %>
+              いいね： ★<%= @post.favorites.count %>
+            <% end %>
+          <% else %>
+            <%= link_to post_favorite_path(@post), method: :post do %>
+              いいね： ☆<%= @post.favorites.count %>
+            <% end %>
+          <% end %>　　
+          コメント件数： <%= @post.post_comments.count %>
+        </p>
+
+        <div class="post-review">
+          <h4 class="review-title">Review</h4>
+          <table width="100%">
+            <tr>
+              <td width="15%">
+                <%= image_tag @post.user.get_profile_image(80,80), style: "border-radius: 50%; object-fit:cover;" %>
+              </td>
+              <td width="85%">
+                <h5 class="r-title"><%= link_to @post.user.name, user_path(@user.id) %></h5>
+                <%= @post.review %>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <!--コメント-->
+        <div class="comment">
+          <h3 class="comment-title">Comment</h3>
+          <%= form_with model: [@post, @post_comment] do |f| %>
+            <%= f.text_area :comment, style: "width:80%", placeholder: "コメントをここに" %>
+            <%= f.submit "送信する" %>
+          <% end %>
+        </div>
+
+        <% @post.post_comments.each do |post_comment| %>
+          <table width="100%">
+            <tr>
+              <td width="10%">
+                <%= image_tag post_comment.user.get_profile_image(60,60), style: "border-radius: 50%; object-fit:cover;" %>
+              </td>
+
+              <td width="80%">
+                <strong><%= post_comment.user.name %></strong><br>
+                <%= post_comment.comment %>
+              </td>
+
+              <td width="10%">
+                <% if post_comment.user == current_user %>
+                  <%= link_to "Delete", post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "本当に削除しますか？"  %>
+                <% end %>
+              </td>
+            </tr>
+          </table>
+          <br>
         <% end %>
-      </p>
+      </article>
 
-      <p>
-        数量：<%= @post.amount %>　　
-        【　個包装：<%= @post.package %>　】
-      </p>
-      <p>価格：<%= @post.price %>円</p>
-      <p>
-        場所：<%= @post.prefecture %>　　　
-        詳細：<%= @post.location %>
-      </p>
-      <p>「<%= @post.recommend %>」オススメ</P>
-      <p><%= render "public/posts/static_rate", post: @post %></p>
-
-      <p>
-        <% if @post.favorited_by?(current_user) %>
-          <%= link_to post_favorite_path(@post), method: :delete do %>
-            いいね： ★<%= @post.favorites.count %>
-          <% end %>
-        <% else %>
-          <%= link_to post_favorite_path(@post), method: :post do %>
-            いいね： ☆<%= @post.favorites.count %>
-          <% end %>
-        <% end %>　　
-        コメント件数： <%= @post.post_comments.count %>
-      </p>
-
-      <div class="post-review">
-        <h4 class="review-title">Review</h4>
-        <table width="100%">
-          <tr>
-            <td width="15%">
-              <%= image_tag @post.user.get_profile_image(80,80), style: "border-radius: 50%; object-fit:cover;" %>
-            </td>
-            <td width="85%">
-              <h5 class="r-title"><%= link_to @post.user.name, user_path(@user.id) %></h5>
-              <%= @post.review %>
-            </td>
-          </tr>
-        </table>
-      </div>
-
+      <aside>
+        <%= render 'public/posts/sub_menu', posts: @posts %>
+      </aside>
     </div>
   </div>
-
-  <!--コメント-->
-  <div class="row">
-    <div class="col">
-
-      <div class="comment">
-        <h3 class="comment-title">Comment</h3>
-        <%= form_with model: [@post, @post_comment] do |f| %>
-          <%= f.text_area :comment, style: "width:80%", placeholder: "コメントをここに" %>
-          <%= f.submit "送信する" %>
-        <% end %>
-      </div>
-
-      <% @post.post_comments.each do |post_comment| %>
-        <table width="100%">
-          <tr>
-            <td width="10%">
-              <%= image_tag post_comment.user.get_profile_image(60,60), style: "border-radius: 50%; object-fit:cover;" %>
-            </td>
-
-            <td width="80%">
-              <strong><%= post_comment.user.name %></strong><br>
-              <%= post_comment.comment %>
-            </td>
-
-            <td width="10%">
-              <% if post_comment.user == current_user %>
-                <%= link_to "Delete", post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "本当に削除しますか？"  %>
-              <% end %>
-            </td>
-          </tr>
-        </table>
-        <br>
-      <% end %>
-
-    </div>
-  </div>
-
 </div>

@@ -34,8 +34,8 @@
   @media screen and (max-width: 600px) {
     h1{
       font-size: 50px;
-      padding-top: 4vh;
-      padding-bottom: 3vh;
+      padding-top: 2vh;
+      padding-bottom: 1vh;
     }
   }
 
@@ -43,8 +43,8 @@
   @media screen and (min-width: 601px) {
     h1{
       font-size: 100px;
-      padding-top: 8vh;
-      padding-bottom: 6vh;
+      padding-top: 5vh;
+      padding-bottom: 3vh;
     }
   }
 }

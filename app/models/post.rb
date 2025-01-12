@@ -18,6 +18,7 @@ class Post < ApplicationRecord
     validates :location
     validates :recommend
     validates :review
+    validates :star
   end
 
   #都道府県
