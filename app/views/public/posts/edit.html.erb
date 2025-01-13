@@ -7,8 +7,8 @@
 
 <div class='container'>
   <div class="row">
-    <div class="mx-auto">
 
+    <div class="edit">
       <% if @post.errors.any? %>
         <%= @post.errors.count %>件、入力欄が空欄です。
         <ul>
@@ -22,8 +22,8 @@
       <%= form_with model: @post do |f| %>
         <table class="edit", width="100%">
           <tr>
-            <td width="30%"></td>
-            <td width="70%"></td>
+            <td width="40%"></td>
+            <td width="60%"></td>
           </tr>
           <tr>
             <td><label for="inputImage">商品画像</label></td>
@@ -72,11 +72,11 @@
             <td><label for="inputReview">Review</label></td>
             <td><%= f.text_area :review, cols: '50', autofocus: true, id:"inputReview" %></td>
           </tr>
-
-          <tr>
-            <td><%= f.submit "変更を保存" %></td>
-          </tr>
         </table>
+        <br>
+        <div class="d-flex justify-content-center mb-2">
+          <%= f.submit "変更を保存" %>
+        </div>
       <% end %>
 
     </div>

@@ -19,73 +19,95 @@
       <% end %>
 
       <%= form_with model: @post do |f| %>
+        <table class="edit", width="100%">
+          <tr>
+            <td width="40%"></td>
+            <td width="60%"></td>
+          </tr>
 
-        <h4>画像</h4>
-        <%= f.file_field :image, accept: "image/*" %>
+          <tr>
+            <td><h5>画像</h5></td>
+            <td><%= f.file_field :image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <td><h5>商品名</h5></td>
+            <td><%= f.text_field :name, size: 45 %></td>
+          </tr>
+          <tr>
+            <td><h5>商品説明</h5></td>
+            <td><%= f.text_area :introduction, cols: '50' %></td>
+          </tr>
+          <tr>
+            <td><h5>個数</h5></td>
+            <td><%= f.number_field :amount %>個</td>
+          </tr>
+          <tr>
+            <!--包装 有無-->
+            <td colspan="1"></td>
+            <td><h6>※個包装　
+              <%= f.radio_button :package, :"有り" %>
+              <%= f.label :package, "有り", value: :"有り"  %>
+              <%= f.radio_button :package, :"無し" %>
+              <%= f.label :package, "無し", value: :"無し"  %>
+            </h6></td>
+          </tr>
+          <tr>
+            <td><h5>価格</h5></td>
+            <td><%= f.number_field :price %>円</td>
+          </tr>
+          <tr>
+            <td><h5>都道府県</h5></td>
+            <td><%= f.select :prefecture, Post.prefectures.keys.map %></td>
+          </tr>
+          <tr>
+            <td><h5>場所（詳細）</h5></td>
+            <td><%= f.text_field :location, size: 45 %></td>
+          </tr>
+          <tr>
+            <td><h5>贈る相手・オススメ</h5></td>
+            <td><%= f.select :recommend, Post.recommends.keys.map %></td>
+          </tr>
+          <tr>
+            <td><h5>タグ　(「,」で区切ると<br>複数タグ登録できます)</h5></td>
+            <td><%= f.text_field :tagname, value: @tag_list, class: 'form-control' %></td>
+          </tr>
+          <tr>
+            <% if @post.id.nil? %>
+              <div class="form-group" id="star">
+                <td><h5><%= f.label :star %></h5></td>
+                <td><%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
+                <div id="post_raty"></div>
+              </div>
+              <script>
+                $(document).on('turbolinks:load', function() {
+                  let elem = document.querySelector('#post_raty');
+                  if (elem == null) return;
 
-        <h4>商品名</h4>
-        <%= f.text_field :name, size: 45 %>
-
-        <h4>商品説明</h4>
-        <%= f.text_area :introduction, cols: '50' %>
-
-        <h4>個数</h4>
-        <%= f.number_field :amount %>個
-
-        <!--包装 有無-->
-        <h5>※個包装
-          <%= f.radio_button :package, :"有り" %>
-          <%= f.label :package, "有り", value: :"有り"  %>
-          <%= f.radio_button :package, :"無し" %>
-          <%= f.label :package, "無し", value: :"無し"  %>
-        </h5>
-
-        <h4>価格</h4>
-        <%= f.number_field :price %>円
-
-        <h4>都道府県</h4>
-        <%= f.select :prefecture, Post.prefectures.keys.map %>
-
-        <h4>場所（詳細）</h4>
-        <%= f.text_field :location, size: 45 %>
-
-        <h4>贈る相手・オススメ</h4>
-        <%= f.select :recommend, Post.recommends.keys.map %>
-
-        <h4>タグ　(「,」で区切ると複数タグ登録できます)</h4>
-        <%= f.text_field :tagname, value: @tag_list, class: 'form-control' %>
-
-        <% if @post.id.nil? %>
-          <div class="form-group" id="star">
-            <h4><%= f.label :star %></h4>
-            <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
-            <div id="post_raty"></div>
-          </div>
-          <script>
-            $(document).on('turbolinks:load', function() {
-              let elem = document.querySelector('#post_raty');
-              if (elem == null) return;
-
-              elem.innerHTML = ""
-              let opt = {  
-                starOn: "<%= asset_path('star-on.png') %>",
-                starOff: "<%= asset_path('star-off.png') %>",
-                starHalf: "<%= asset_path('star-half.png') %>",
-                scoreName: 'post[star]',
-              };
-              raty(elem, opt);
-            });
-          </script>
-        <% else %>
-          <div class="form-group">
-            <%= render "static_rate", post: post %>
-          </div>
-        <% end %>
-
-        <h4>Review</h4>
-        <%= f.text_area :review, cols: '50' %>
-
-        <p><%= f.submit '投稿' %></p>
+                  elem.innerHTML = ""
+                  let opt = {  
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    scoreName: 'post[star]',
+                  };
+                  raty(elem, opt);
+                });
+              </script>
+            <% else %>
+              <div class="form-group">
+                <%= render "static_rate", post: post %>
+              </div></td>
+            <% end %>
+          </tr>
+          <tr>
+            <td><h5>Review</h5></td>
+            <td><%= f.text_area :review, cols: '50' %></td>
+          </tr>
+        </table>
+        <br>
+        <div class="d-flex justify-content-center mb-2">
+          <%= f.submit '投稿' %>
+        </div>
       <% end %>
     </div>
 
