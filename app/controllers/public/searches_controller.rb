@@ -1,6 +1,7 @@
 class Public::SearchesController < ApplicationController
   before_action :authenticate_user!
 
+  #検索機能
   def search
     @model = params[:model]
     @content = params[:content]
@@ -17,6 +18,7 @@ class Public::SearchesController < ApplicationController
     @tag_list = Tag.all
   end
 
+  #タグ機能
   def search_tag
     @tag = Tag.find(params[:tag_id])
     @tag_list = Tag.all

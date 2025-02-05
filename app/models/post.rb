@@ -46,6 +46,7 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+  #タグ機能
   def save_tags(tags)
     current_tags = self.tags.pluck(:tagname) unless self.tags.nil?
     old_tags = current_tags - tags
@@ -61,6 +62,7 @@ class Post < ApplicationRecord
     end
   end
 
+  #検索機能
   def self.search_for(content, method)
     if method == 'perfect'
       Post.where(name: content)
