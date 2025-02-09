@@ -100,14 +100,23 @@ aside li {
 }
 
   /* SP向けの設定 */
-  @media screen and (max-width: 770px) {
+  @media screen and (max-width: 760px) {
     .wrap {
       display: grid;
       grid-template-columns: 1fr;
     }
+
+    article {
+      width: 70%;
+    }
+    
+    aside {
+      width: 30%;
+      margin-left: 15px;
+    }
   }
 
-  @media screen and (min-width: 771px) {
+  @media screen and (min-width: 761px) {
     .wrap {
       display: grid;
       grid-template-columns: 1fr 1fr;
