@@ -1,0 +1,35 @@
+
+<div class="wrap card-columns">
+  <% posts.each do |post| %>
+    <div class="card">
+      <div class="card-body rounded">
+        <div class="post-image">
+          <%= link_to admin_post_path(post.id) do %>
+            <%= image_tag post.get_image(235,180) %>
+          <% end %>
+        </div>
+
+        <table class="post-text">
+          <tr>
+            <th><h5><strong>商品名：<%= post.name %></strong></h5></th>
+          </tr>
+          <tr>
+            <td>場所：<%= post.prefecture %></td>
+          </tr>
+          <tr>
+            <td>「<%= post.recommend %>」オススメ</td>
+          </tr>
+          <tr>
+            <td><%= "★いいね： #{post.favorites.count}" %></td>
+          </tr>
+          <tr>
+            <td><%= render "public/posts/static_rate", post: post %></td>
+          </tr>
+          <tr>
+            <td>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  <% end %>
+</div>

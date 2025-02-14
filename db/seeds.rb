@@ -9,7 +9,7 @@
 
 puts "seedの実行を開始"
 
-olivia = User.find_or_create_by!(email: "olivia@gameil.com") do |user|
+olivia = User.find_or_create_by!(email: "olivia@example.com") do |user|
   user.name = "Olivia"
   user.password = "olivia24"
 end
