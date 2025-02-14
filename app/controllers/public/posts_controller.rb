@@ -2,6 +2,7 @@ class Public::PostsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :correct_post, only: [:edit, :update]
+  before_action :guest_check, only: [:new]
 
   def new
     @post = Post.new
@@ -78,6 +79,12 @@ class Public::PostsController < ApplicationController
 
   def authenticate_user!
     redirect_to root_path, alert: 'ログインが必要です' unless current_user
+  end
+
+  def guest_check
+    if current_user == User.guest
+      redirect_to posts_path, notice: "このページを見るには会員登録が必要です。"
+    end
   end
 
 end
