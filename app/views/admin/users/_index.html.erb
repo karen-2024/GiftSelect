@@ -2,20 +2,20 @@
 <table class='table'>
   <thead>
     <tr>
-      <th>Profile_image</th>
-      <th>User_name</th>
-      <th>Email</th>
-      <th colspan="4"></th>
+      <th class="col-2">Profile_image</th>
+      <th class="col-3">User_name</th>
+      <th class="col-5">Email</th>
+      <th class="col-2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% users.each do |user| %>
       <tr>
-        <td><%= image_tag user.get_profile_image(50,50), style: "border-radius: 50%; object-fit:cover;" %></td>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' } %> </td>
+        <td class="col-2"><%= image_tag user.get_profile_image(50,50), style: "border-radius: 50%; object-fit:cover;" %></td>
+        <td class="col-3"><%= user.name %></td>
+        <td class="col-5"><%= user.email %></td>
+        <td class="col-2"><%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？'}, class: "btn btn-sm btn-danger" %> </td>
       </tr>
     <% end %>
   </tbody>

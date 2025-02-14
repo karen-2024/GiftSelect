@@ -29,6 +29,9 @@
                   <%= link_to 'User index', admin_dashboards_path, class: 'nav-link text-light' %>
                 </li>
                 <li class="nav-item">
+                  <%= link_to 'Comment index', admin_post_comments_path, class: 'nav-link text-light' %>
+                </li>
+                <li class="nav-item">
                   <%= link_to 'Log out', destroy_admin_session_path, method: :delete, class: 'nav-link text-light' %>
                 </li>
               <% else %>
