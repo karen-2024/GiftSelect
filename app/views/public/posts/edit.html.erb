@@ -65,7 +65,7 @@
 
           <tr>
             <td><label for="inputTagname">タグ(「,」で区切ると<br>複数タグ登録できます)</label></td>
-            <td><%= f.text_field :tagname, size: 45, autofocus: true, id:"inputTagname", placeholder:"例：和菓子,お餅" %></td>
+            <td><%= f.text_field :tagname, value: @tag_list, size: 45, autofocus: true, id:"inputTagname", placeholder:"例：和菓子,お餅" %></td>
           </tr>
 
           <tr>

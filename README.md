@@ -20,7 +20,10 @@
 * もらったお土産/贈り物の感想（詳細）が知りたい時
 
 ## 設計書
-後ほど作成予定
+* UI Flows（エンドユーザー）：https://drive.google.com/file/d/19UgnuremmOQx0-CCmMetSP0bb0yVeCj5/view?usp=drive_link
+* ER図：https://drive.google.com/file/d/1V0FUyDck2kvP4CmDDShJbwmGgoUygM0u/view?usp=drive_link
+* テーブル定義書：https://docs.google.com/spreadsheets/d/1PDbw35MYW5aR74SM7alCpxoTrq1h0oi1s5WV4Q2kb9A/edit?usp=drive_link
+* アプリケーション詳細設計書：https://docs.google.com/spreadsheets/d/1Godur5RnOAx5hO11lvXOvLQCp2NyTJSNVrEzM3rcYio/edit?usp=drive_link
 ​
 ## 仕様素材
 * フリー素材として以下を使用

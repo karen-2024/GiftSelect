@@ -52,13 +52,15 @@ class Post < ApplicationRecord
     old_tags = current_tags - tags
     new_tags = tags - current_tags
 
+    # 古いタグを消す
     old_tags.each do |old_tagname|
       self.tags.delete Tag.find_by(tagname:old_tagname)
     end
 
+    # 新しいタグを保存
     new_tags.each do |new_tagname|
-      tag = Tag.find_or_create_by(tagname:new_tagname)
-      self.tags << tag
+      post_tag = Tag.find_or_create_by(tagname:new_tagname)
+      self.tags << post_tag
     end
   end
 
